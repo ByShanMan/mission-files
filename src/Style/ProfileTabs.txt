@@ -1,0 +1,109 @@
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import Button from '@material-ui/core/Button';
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import TDbDisplay from './TDbDisplay';
+import { FaBatteryThreeQuarters } from 'react-icons/fa';
+import { FaUserGraduate } from 'react-icons/fa';
+import { FaConciergeBell } from 'react-icons/fa';
+import { FaLaptopCode } from 'react-icons/fa';
+import { FaStream } from 'react-icons/fa';
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
+import Drawer from '@material-ui/core/Drawer';
+
+
+
+
+const styles = makeStyles({
+  iconFix: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    fontSize: '12px',
+  },
+  iconStyle: {
+    minHeight: '0',
+    color: '#fff',
+  }
+})
+
+
+
+  const VerticalTabs = withStyles(theme => ({
+    flexContainer: {
+      display: "flex",
+      flexDirection: 'column',
+      height: '500px',
+      width: '180px',
+      background: '#43c0f6',
+      border: '0px solid #43c0f6',
+      fontSize: 'x-small',
+    }
+  }))(Tabs)
+  
+  const MyTab = withStyles(theme => ({
+    selected: {
+      color: 'grey',
+      background: '#b2e4f9',
+    }
+  }))(Tab);
+  
+
+
+const drawerWidth = 236;
+const useStyles = makeStyles ((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  drawer: {
+    '& .MuiDrawer-paperAnchorDockedLeft': {
+      borderRight: 0},
+      overflowX: 'hidden',
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      backgroundColour: '#43C0F6',
+  }
+}))
+
+
+
+
+
+
+
+function ProfileTabs() {
+  const muiStyles = styles();
+  const [activeIndex, setActiveIndex] = useState(0)
+  const handleChange = (e, value) => {
+    setActiveIndex(value);
+  }
+    return (
+      <div>
+        <div style={{display: 'flex'}}>
+        
+        <VerticalTabs
+          value={activeIndex}
+          onChange={handleChange}
+        >
+          <Avatar src="mainavatar.png" style={{ display: "flex", justifyContent: "center", width: "60px", height: "60px", borderRadius: "180" }} />
+          <MyTab value={0} icon={<FaBatteryThreeQuarters/>} classes={{wrapper: muiStyles.iconFix, labelIcon: muiStyles.iconStyle}} label='Progress Tracker' />
+          <MyTab value={1} icon={<FaUserGraduate/>} classes={{wrapper: muiStyles.iconFix, labelIcon: muiStyles.iconStyle}}  label='Student Profiles' />
+          <MyTab value={2} icon={<FaConciergeBell/>}  classes={{wrapper: muiStyles.iconFix, labelIcon: muiStyles.iconStyle}}  label='Help Requests' />
+          <MyTab value={3} icon={<FaLaptopCode/>} classes={{wrapper: muiStyles.iconFix, labelIcon: muiStyles.iconStyle}}  label='Project Submissions' />
+          <MyTab value={4} icon={<FaStream/>} classes={{wrapper: muiStyles.iconFix, labelIcon: muiStyles.iconStyle}} label='Project Library' />
+          <MyTab />
+        </VerticalTabs>
+        <div>
+        <PTDisplay activeIndex={activeIndex} />
+        </div>
+        </div>
+    </div>
+    )
+}
+
+export default ProfileTabs;

@@ -1,0 +1,13 @@
+.footy {
+    display:flex;
+    flex-direction:row;
+    align-content:center;
+}
+
+.footNote {
+    fontSize:14px;
+    height:20px;
+    paddingTop:10px;
+    marginLeft:5%;
+    marginBottom:10px;
+}
